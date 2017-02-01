@@ -116,9 +116,6 @@
       "minLength": 1,
       "type": "string"
     },
-    "vmSize2": {
-      "type": "string"
-    },
     "VM2Name": {
       "maxLength": 15,
       "metadata": {
