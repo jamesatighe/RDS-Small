@@ -2,5 +2,95 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "adminPassword": {
+            "value": "AzureP@55w0rd"
+        },
+        "adminUsername": {
+            "value": "sysadmin"
+        },
+        "domainAdminUserName": {
+            "value": "tighedc\\sysadmin"
+        },
+        "domainName": {
+            "value": "tighedc.local"
+        },
+        "domainController": {
+            "value": "tighedc1"
+        },
+        "dnsServer": {
+            "value": [
+                "10.0.0.4",
+                "10.0.0.5"
+            ]
+        },
+        "existingVirtualNetworkName": {
+            "value": "RDSVNet"
+        },
+        "existingVirtualNetworkResourceGroup": {
+            "value": "VNET"
+        },
+        "subnetName": {
+            "value": "Backnet"
+        },
+        "vmSize": {
+            "value": "Standard_A4_V2"
+        },
+        "VM1Name": {
+            "value": "rds01"
+        },
+        "vmSize2": {
+            "value": "Standard_A4_V2"
+        },
+        "VM2Name": {
+            "value": "rds02"
+        },
+        "SQLAdminLogin": {
+            "value": "sqladmin"
+        },
+        "SQLAdminLoginPassword": {
+            "value": "AzureP@55w0rd"
+        },
+        "SQLDBName": {
+            "value": "rdsbroker"
+        },
+        "SQLServerName": {
+            "value": "rds-sql"
+        },
+        "RDSHAName": {
+            "value": "RDSAS"
+        },
+        "RDSNSGName": {
+            "value": "rds"
+        },
+        "SessionHosts": {
+            "value": "rds02.tighedc.local"
+        },
+        "WebAccessHosts": {
+            "value": "rds02.tighedc.local"
+        },
+        "ConnectionBrokers": {
+            "value": "rds02.tighedc.local"
+        },
+        "CollectionName": {
+            "value": "RDP Session"
+        },
+        "RDSCBDNS": {
+            "value": "rds"
+        },
+        "RDSCBLBIP": {
+            "value": "10.0.0.10"
+        },
+        "vmPrivateIP1": {
+            "value": "10.0.0.6"
+        },
+        "vmPrivateIP2": {
+            "value": "10.0.0.7"
+        },
+        "workspaceId": {
+            "value": "2db8bd3f-b9f7-4d5e-8592-3a0f303b7295"
+        },
+        "workspaceKey": {
+            "value": "AWjADVCxwZtKuuJN3TyeNJnIb/rCAyEZGzciMi+1jl96QXo5cqI3pSN9Wrz4uS9XBaPIdTpk7Kc+sXNNbHc53w=="
+        }
     }
 }
