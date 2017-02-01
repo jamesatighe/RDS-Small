@@ -38,9 +38,6 @@
         "VM1Name": {
             "value": "rds01"
         },
-        "vmSize2": {
-            "value": "Standard_A4_V2"
-        },
         "VM2Name": {
             "value": "rds02"
         },
@@ -87,10 +84,10 @@
             "value": "10.0.0.7"
         },
         "workspaceId": {
-            "value": "2db8bd3f-b9f7-4d5e-8592-3a0f303b7295"
+            "value": "a91fcc73-06dd-4c8c-af8a-fcf8399ed9ef"
         },
         "workspaceKey": {
-            "value": "AWjADVCxwZtKuuJN3TyeNJnIb/rCAyEZGzciMi+1jl96QXo5cqI3pSN9Wrz4uS9XBaPIdTpk7Kc+sXNNbHc53w=="
+            "value": "QYn+XJ3xdL4vajIeXXKK+Oc7jixa2p6fPPgingzjzGH16DjCxcvrYVBzSeCdrxwjGhLT4fNc67gDUm9wIJrXdg=="
         }
     }
 }
