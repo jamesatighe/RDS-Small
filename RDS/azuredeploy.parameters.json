@@ -38,50 +38,14 @@
         "VM1Name": {
             "value": "rds01"
         },
-        "VM2Name": {
-            "value": "rds02"
-        },
-        "SQLAdminLogin": {
-            "value": "sqladmin"
-        },
-        "SQLAdminLoginPassword": {
-            "value": "AzureP@55w0rd"
-        },
-        "SQLDBName": {
-            "value": "rdsbroker"
-        },
-        "SQLServerName": {
-            "value": "rds-sql"
-        },
-        "RDSHAName": {
-            "value": "RDSAS"
-        },
         "RDSNSGName": {
             "value": "rds"
-        },
-        "SessionHosts": {
-            "value": "rds02.tighedc.local"
-        },
-        "WebAccessHosts": {
-            "value": "rds02.tighedc.local"
-        },
-        "ConnectionBrokers": {
-            "value": "rds02.tighedc.local"
         },
         "CollectionName": {
             "value": "RDP Session"
         },
-        "RDSCBDNS": {
-            "value": "rds"
-        },
-        "RDSCBLBIP": {
-            "value": "10.0.0.10"
-        },
         "vmPrivateIP1": {
             "value": "10.0.0.6"
-        },
-        "vmPrivateIP2": {
-            "value": "10.0.0.7"
         },
         "workspaceId": {
             "value": "a91fcc73-06dd-4c8c-af8a-fcf8399ed9ef"
