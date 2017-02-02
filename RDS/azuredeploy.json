@@ -29,13 +29,6 @@
         "description": "Domain Name for the forest."
       }
     },
-    "safeModeRestorePassword": {
-      "type": "securestring",
-      "defaultValue": "Pass.123456!!!",
-      "metadata": {
-        "description": "Restore Password"
-      }
-    },
     "domainController": {
       "type": "string",
       "metadata": {
@@ -87,21 +80,6 @@
       },
       "type": "string"
     },
-
-    "DSCLocationRDS2": {
-      "type": "string",
-      "defaultValue": "https://tighedeployment1.blob.core.windows.net/dsc1/dscExtRDS2.zip",
-      "metadata": {
-        "description": "Auto-generated container in staging storage account to receive post-build staging folder upload"
-      }
-    },
-    "DSCConfigLocationRDS2": {
-      "defaultValue": "https://tighedeployment1.blob.core.windows.net/dsc1/dscextRDS2.psd1",
-      "metadata": {
-        "description": "Auto-generated container in staging storage account to receive post-build staging folder upload"
-      },
-      "type": "string"
-    },
     "vmSize": {
       "type": "string",
       "metadata": {
@@ -116,81 +94,10 @@
       "minLength": 1,
       "type": "string"
     },
-    "VM2Name": {
-      "maxLength": 15,
-      "metadata": {
-        "description": "VM 2 Name."
-      },
-      "minLength": 1,
-      "type": "string"
-    },
     "vmOSVersion": {
       "type": "string",
       "metadata": {
         "description": "OS Version for all VMs."
-      }
-    },
-    "SQLAdminLogin": {
-      "type": "string",
-      "minLength": 1,
-      "metadata": {
-        "description": "Admin user for SQL PaaS."
-      }
-    },
-    "SQLAdminLoginPassword": {
-      "type": "securestring",
-      "metadata": {
-        "description": "Password for SQL PaaS."
-      }
-    },
-    "SQLDBName": {
-      "type": "string",
-      "minLength": 1,
-      "metadata": {
-        "description": "Name for SQL PaaS database."
-      }
-    },
-    "SQLDBCollation": {
-      "type": "string",
-      "minLength": 1,
-      "defaultValue": "SQL_Latin1_General_CP1_CI_AS"
-    },
-    "SQLEdition": {
-      "type": "string",
-      "defaultValue": "Basic",
-      "allowedValues": [
-        "Basic",
-        "Standard",
-        "Premium"
-      ]
-    },
-    "SQLServerName": {
-      "type": "string",
-      "metadata": {
-        "description": "Name for SQL PaaS Server."
-      }
-    },
-    "SQLRequestedServiceObjectiveName": {
-      "type": "string",
-      "defaultValue": "Basic",
-      "allowedValues": [
-        "Basic",
-        "S0",
-        "S1",
-        "S2",
-        "P1",
-        "P2",
-        "P3"
-      ],
-      "metadata": {
-        "description": "Describes the performance level for Edition"
-      }
-    },
-    "RDSHAName": {
-      "type": "string",
-      "minLength": 1,
-      "metadata": {
-        "description": "Availability Set name for RDS Servers."
       }
     },
     "RDSNSGName": {
@@ -199,59 +106,16 @@
         "description": "Network Security Group Name for RDS servers."
       }
     },
-    "SessionHosts": {
-      "type": "string",
-      "metadata": {
-        "description": "List of servers to add as RD Session Hosts. Must be in format servername1.domain,servername2.domain ."
-      }
-    },
-    "WebAccessHosts": {
-      "type": "string",
-      "metadata": {
-        "description": "List of servers to add as RD Web Access Hosts. Must be in format servername1.domain,servername2.domain ."
-      }
-    },
-    "ConnectionBrokers": {
-      "type": "string",
-      "metadata": {
-        "description": "List of servers to add as RD Connection Brokers. Must be in format servername1.domain,servername2.domain ."
-      }
-    },
     "CollectionName": {
       "type": "string",
       "metadata": {
         "description": "Name of RDS Session Collection eg. RD Session."
       }
     },
-    "RDSCBDNS": {
-      "type": "string",
-      "metadata": {
-        "description": "FQDN for RDS connection broker. Must be FQDN."
-      }
-    },
-    "lbName": {
-      "type": "string",
-      "defaultValue": "RDSCB",
-      "metadata": {
-        "description": "Load Balancer name"
-      }
-    },
-    "RDSCBLBIP": {
-      "type": "string",
-      "metadata": {
-        "description": "RDS Connection Broker Load Balance IP"
-      }
-    },
     "vmPrivateIP1": {
       "type": "string",
       "metadata": {
         "description": "Private IP for VM 1."
-      }
-    },
-    "vmPrivateIP2": {
-      "type": "string",
-      "metadata": {
-        "description": "Private IP for VM 2."
       }
     },
     "workspaceId": {
@@ -272,78 +136,14 @@
     "imageOffer": "WindowsServer",
     "imagePublisher": "MicrosoftWindowsServer",
     "nic1name": "[concat(parameters('VM1Name'), 'NetworkInterface')]",
-    "nic2name": "[concat(parameters('VM2Name'), 'NetworkInterface')]",
     "PublicIPAddress1Name": "[concat(parameters('VM1Name'), 'PublicIP')]",
-    "PublicIPAddress2Name": "[concat(parameters('VM2Name'), 'PublicIP')]",
-    "publicIPAddressType": "Dynamic",
     "vhdStorageContainerName": "vhds",
     "vhdStorageName": "[concat('vhdstorage', uniqueString(resourceGroup().id))]",
     "vhdStorageType": "Standard_LRS",
     "vnetID": "[resourceId(parameters('existingVirtualNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks', parameters('existingVirtualNetworkName'))]",
-    "subnetRef": "[concat(variables('vnetID'),'/subnets/', parameters('subnetName'))]",
-    "lbID": "[resourceId('Microsoft.Network/loadBalancers',parameters('lbName'))]"
+    "subnetRef": "[concat(variables('vnetID'),'/subnets/', parameters('subnetName'))]"
   },
   "resources": [
-    {
-      "apiVersion": "2015-05-01-preview",
-      "type": "Microsoft.Network/loadBalancers",
-      "name": "[parameters('lbName')]",
-      "location": "[resourceGroup().location]",
-      "dependsOn": [],
-      "tags": {
-        "displayName": "CB-LB"
-      },
-      "properties": {
-        "frontendIPConfigurations": [
-          {
-            "properties": {
-              "subnet": {
-                "id": "[variables('subnetRef')]"
-              },
-              "privateIPAddress": "10.0.0.10",
-              "privateIPAllocationMethod": "Static"
-            },
-            "name": "LoadBalancerFrontend"
-          }
-        ],
-        "backendAddressPools": [
-          {
-            "name": "BackendPool1"
-          }
-        ],
-        "loadBalancingRules": [
-          {
-            "properties": {
-              "frontendIPConfiguration": {
-                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('lbName')), '/frontendIpConfigurations/LoadBalancerFrontend')]"
-              },
-              "backendAddressPool": {
-                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('lbName')), '/backendAddressPools/BackendPool1')]"
-              },
-              "probe": {
-                "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('lbName')), '/probes/lbprobe')]"
-              },
-              "protocol": "Tcp",
-              "frontendPort": 3389,
-              "backendPort": 3389,
-              "idleTimeoutInMinutes": 15
-            },
-            "Name": "lbrule"
-          }
-        ],
-        "probes": [
-          {
-            "properties": {
-              "protocol": "Tcp",
-              "port": 3389,
-              "intervalInSeconds": 15,
-              "numberOfProbes": 2
-            },
-            "name": "lbprobe"
-          }
-        ]
-      }
-    },
     {
       "apiVersion": "2015-06-15",
       "type": "Microsoft.Network/networkSecurityGroups",
@@ -430,7 +230,6 @@
       "apiVersion": "2015-06-15",
       "dependsOn": [
         "[resourceId('Microsoft.Network/publicIPAddresses', variables('PublicIPAddress1Name'))]",
-        "[resourceId('Microsoft.Network/loadBalancers/', parameters('lbName'))]",
         "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('RDSNSGName'))]"
       ],
       "tags": {
@@ -448,12 +247,7 @@
               },
               "publicIPAddress": {
                 "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('PublicIPAddress1Name'))]"
-              },
-              "loadBalancerBackendAddressPools": [
-                {
-                  "id": "[concat(variables('lbID'), '/backendAddressPools/BackendPool1')]"
-                }
-              ]
+              }
             }
           }
         ],
@@ -473,7 +267,6 @@
       "dependsOn": [
         "[resourceId('Microsoft.Storage/storageAccounts', variables('vhdStorageName'))]",
         "[resourceId('Microsoft.Network/networkInterfaces', variables('nic1name'))]",
-        "[resourceId('Microsoft.Compute/availabilitySets', parameters('RDSHAName'))]"
       ],
       "tags": {
         "displayName": "VirtualMachine1"
@@ -509,9 +302,6 @@
               "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nic1name'))]"
             }
           ]
-        },
-        "availabilitySet": {
-          "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('RDSHAName'))]"
         }
       },
       "resources": [
@@ -665,326 +455,6 @@
           }
         }
       ]
-    },
-    {
-      "name": "[variables('PublicIPAddress2Name')]",
-      "type": "Microsoft.Network/publicIPAddresses",
-      "location": "[resourceGroup().location]",
-      "apiVersion": "2015-06-15",
-      "dependsOn": [],
-      "tags": {
-        "displayName": "PublicIPAddress2"
-      },
-      "properties": {
-        "publicIPAllocationMethod": "Static"
-      }
-    },
-    {
-      "name": "[variables('nic2name')]",
-      "type": "Microsoft.Network/networkInterfaces",
-      "location": "[resourceGroup().location]",
-      "apiVersion": "2015-06-15",
-      "dependsOn": [
-        "[resourceId('Microsoft.Network/publicIPAddresses', variables('PublicIPAddress2Name'))]",
-        "[resourceId('Microsoft.Network/loadBalancers/', parameters('lbName'))]",
-        "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('RDSNSGName'))]"
-      ],
-      "tags": {
-        "displayName": "Network Interface"
-      },
-      "properties": {
-        "ipConfigurations": [
-          {
-            "name": "ipconfig1",
-            "properties": {
-              "privateIPAllocationMethod": "Static",
-              "privateIPAddress": "[parameters('vmPrivateIP2')]",
-              "subnet": {
-                "id": "[variables('subnetRef')]"
-              },
-              "publicIPAddress": {
-                "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('PublicIPAddress2Name'))]"
-              },
-              "loadBalancerBackendAddressPools": [
-                {
-                  "id": "[concat(variables('lbID'), '/backendAddressPools/BackendPool1')]"
-                }
-              ]
-            }
-          }
-        ],
-        "dnsSettings": {
-          "dnsServers": "[parameters('dnsServer')]"
-        },
-        "networkSecurityGroup": {
-          "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('RDSNSGName'))]"
-        }
-      }
-    },
-    {
-      "name": "[parameters('VM2Name')]",
-      "type": "Microsoft.Compute/virtualMachines",
-      "location": "[resourceGroup().location]",
-      "apiVersion": "2015-06-15",
-      "dependsOn": [
-        "[resourceId('Microsoft.Storage/storageAccounts', variables('vhdStorageName'))]",
-        "[resourceId('Microsoft.Network/networkInterfaces', variables('nic2name'))]",
-        "[resourceId('Microsoft.Compute/availabilitySets', parameters('RDSHAName'))]",
-        "[resourceId('Microsoft.Compute/virtualMachines', parameters('VM1Name'))]"
-      ],
-      "tags": {
-        "displayName": "VirtualMachine2"
-      },
-      "properties": {
-        "hardwareProfile": {
-          "vmSize": "[parameters('vmSize')]"
-        },
-        "osProfile": {
-          "computerName": "[parameters('VM2Name')]",
-          "adminUsername": "[parameters('adminUsername')]",
-          "adminPassword": "[parameters('adminPassword')]"
-        },
-        "storageProfile": {
-          "imageReference": {
-            "publisher": "[variables('imagePublisher')]",
-            "offer": "[variables('imageOffer')]",
-            "sku": "[parameters('vmOSVersion')]",
-            "version": "latest"
-          },
-          "osDisk": {
-            "name": "VirtualMachine2OSDisk",
-            "vhd": {
-              "uri": "[concat('https://', variables('vhdStorageName'), '.blob.core.windows.net/', variables('vhdStorageContainerName'), '/', parameters('VM2Name'), '-OSDisk.vhd')]"
-            },
-            "caching": "ReadWrite",
-            "createOption": "FromImage"
-          }
-        },
-        "networkProfile": {
-          "networkInterfaces": [
-            {
-              "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nic2name'))]"
-            }
-          ]
-        },
-        "availabilitySet": {
-          "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('RDSHAName'))]"
-        }
-      },
-      "resources": [
-        {
-          "apiVersion": "2015-05-01-preview",
-          "type": "extensions",
-          "name": "domainjoinvm2",
-          "location": "[resourceGroup().location]",
-          "dependsOn": [
-            "[concat('Microsoft.Compute/virtualMachines/', parameters('VM2Name'))]"
-          ],
-          "properties": {
-            "publisher": "Microsoft.Compute",
-            "type": "JsonADDomainExtension",
-            "typeHandlerVersion": "1.3",
-            "autoUpgradeMinorVersion": true,
-            "settings": {
-              "Name": "[parameters('domainName')]",
-              "OUPath": "",
-              "User": "[parameters('domainAdminUserName')]",
-              "Restart": "true",
-              "Options": "3"
-            },
-            "protectedsettings": {
-              "Password": "[parameters('adminPassword')]"
-            }
-          }
-        },
-        {
-          "name": "Microsoft.Powershell.DSC",
-          "type": "extensions",
-          "location": "[resourceGroup().location]",
-          "apiVersion": "2015-06-15",
-          "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines', parameters('VM2Name'))]",
-            "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('VM2Name'), 'domainjoinvm2')]",
-            "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('VM1Name'), 'Microsoft.Powershell.DSC')]"
-          ],
-          "tags": {
-            "displayName": "dscExt2"
-          },
-          "properties": {
-            "publisher": "Microsoft.Powershell",
-            "type": "DSC",
-            "typeHandlerVersion": "2.9",
-            "autoUpgradeMinorVersion": true,
-            "protectedSettings": {
-              "items": {
-                "Password": "[parameters('adminPassword')]"
-              }
-            },
-            "settings": {
-              "configuration": {
-                "url": "[parameters('DSCLocationRDS2')]",
-                "modulesUrl": "[parameters('DSCLocationRDS2')]",
-                "script": "dscExtRDS2.ps1",
-                "function": "RDSDeployment"
-              },
-              "configurationData": {
-                "url": "[parameters('DSCConfigLocationRDS2')]"
-              },
-              "configurationArguments": {
-                "nodeName": "[concat(parameters('VM2Name'), '.' ,parameters('domainName'))]",
-                "domainName": "[parameters('domainName')]",
-                "domainAdminCredentials": {
-                  "UserName": "[parameters('adminUsername')]",
-                  "Password": "PrivateSettingsRef:Password"
-                },
-                "ConnectionBroker": "[parameters('VM1Name')]"
-              }
-            }
-          }
-        },
-        {
-          "name": "Microsoft.EnterpriseCloud.Monitoring",
-          "type": "extensions",
-          "location": "[resourceGroup().location]",
-          "apiVersion": "2015-06-15",
-          "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines', parameters('VM2Name'))]",
-            "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('VM2Name'), 'Microsoft.Powershell.DSC')]"
-          ],
-          "tags": {
-            "displayName": "OMSAgent"
-          },
-          "properties": {
-            "publisher": "Microsoft.EnterpriseCloud.Monitoring",
-            "type": "MicrosoftMonitoringAgent",
-            "typeHandlerVersion": "1.0",
-            "autoUpgradeMinorVersion": true,
-            "settings": {
-              "workspaceId": "[parameters('workspaceId')]"
-            },
-            "protectedSettings": {
-              "workspaceKey": "[parameters('workspaceKey')]"
-            }
-          }
-        },
-        {
-          "apiVersion": "2016-03-30",
-          "dependsOn": [
-            "[parameters('VM2Name')]",
-            "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('VM2Name'), 'Microsoft.Powershell.DSC')]"
-          ],
-          "type": "extensions",
-          "name": "Vuzion.Monitoring.RM",
-          "location": "[resourceGroup().location]",
-          "properties": {
-            "publisher": "Microsoft.Compute",
-            "type": "CustomScriptExtension",
-            "typeHandlerVersion": "1.7",
-            "settings": {
-              "fileUris": [
-                "https://cobwebjson.blob.core.windows.net/installers/MAXRMAGENT.EXE"
-              ],
-              "commandToExecute": "MAXRMAGENT.exe /s"
-            },
-            "protectedSettings": {
-              "storageAccountName": "cobwebjson",
-              "storageAccountKey": "zG+BDmaOL8cwkGQFjbNMprMncih/QQXhStlCwGb8A817FXF/VdwbSFVfWC7J6PKKSJQ9zhJn56JZKGDeJcCsNw=="
-            }
-          }
-        },
-        {
-          "type": "extensions",
-          "name": "Microsoft.Compute.AntiMalware",
-          "dependsOn": [
-            "[parameters('VM2Name')]",
-            "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('VM2Name'), 'Microsoft.Powershell.DSC')]"
-          ],
-          "apiVersion": "2015-06-15",
-          "location": "[resourceGroup().location]",
-          "properties": {
-            "publisher": "Microsoft.Azure.Security",
-            "type": "IaaSAntimalware",
-            "typeHandlerVersion": "1.3",
-            "autoUpgradeMinorVersion": true,
-            "settings": {
-              "AntimalwareEnabled": true,
-              "RealtimeProtectionEnabled": "true",
-              "ScheduledScanSettings": {
-                "isEnabled": "true",
-                "day": "7",
-                "time": "120",
-                "scanType": "quick"
-              },
-              "Exclusions": {
-                "Extensions": "",
-                "Paths": "",
-                "Processes": ""
-              }
-            }
-          }
-        }
-      ]
-    },
-    {
-      "name": "[parameters('SQLServerName')]",
-      "type": "Microsoft.Sql/servers",
-      "location": "[resourceGroup().location]",
-      "apiVersion": "2014-04-01-preview",
-      "dependsOn": [],
-      "tags": {
-        "displayName": "SQLPaaS"
-      },
-      "properties": {
-        "administratorLogin": "[parameters('SQLAdminLogin')]",
-        "administratorLoginPassword": "[parameters('SQLAdminLoginPassword')]"
-      },
-      "resources": [
-        {
-          "name": "AllowAllWindowsAzureIps",
-          "type": "firewallrules",
-          "location": "[resourceGroup().location]",
-          "apiVersion": "2014-04-01-preview",
-          "dependsOn": [
-            "[resourceId('Microsoft.Sql/servers', parameters('SQLServerName'))]"
-          ],
-          "properties": {
-            "startIpAddress": "0.0.0.0",
-            "endIpAddress": "0.0.0.0"
-          }
-        },
-        {
-          "name": "[parameters('SQLDBName')]",
-          "type": "databases",
-          "location": "[resourceGroup().location]",
-          "apiVersion": "2014-04-01-preview",
-          "dependsOn": [
-            "[resourceId('Microsoft.Sql/servers', parameters('SQLServerName'))]"
-          ],
-          "tags": {
-            "displayName": "SQLDB"
-          },
-          "properties": {
-            "collation": "[parameters('SQLDBCollation')]",
-            "edition": "[parameters('SQLEdition')]",
-            "maxSizeBytes": "1073741824",
-            "requestedServiceObjectiveName": "[parameters('SQLRequestedServiceObjectiveName')]"
-          }
-        }
-      ]
-    },
-    {
-      "name": "[parameters('RDSHAName')]",
-      "type": "Microsoft.Compute/availabilitySets",
-      "location": "[resourceGroup().location]",
-      "apiVersion": "2015-06-15",
-      "dependsOn": [],
-      "tags": {
-        "displayName": "RDS-HA"
-      },
-      "properties": {
-        "platformUpdateDomainCount": 2,
-        "platformFaultDomainCount": 2
-      }
     }
   ]
 }

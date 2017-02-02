@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "RDS", "RDS\RDS.deployproj", "{9A7A58A2-D91A-4FAE-B6A6-461744B46517}"
+Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "RDS Small", "RDS\RDS Small.deployproj", "{9A7A58A2-D91A-4FAE-B6A6-461744B46517}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

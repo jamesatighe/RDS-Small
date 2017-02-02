@@ -88,6 +88,9 @@
         },
         "workspaceKey": {
             "value": "QYn+XJ3xdL4vajIeXXKK+Oc7jixa2p6fPPgingzjzGH16DjCxcvrYVBzSeCdrxwjGhLT4fNc67gDUm9wIJrXdg=="
+        },
+        "vmOSVersion": {
+            "value": "2016-Datacenter"
         }
     }
 }
