@@ -36,7 +36,7 @@
             "value": "Standard_A4_V2"
         },
         "VM1Name": {
-            "value": "rds01"
+            "value": "rdsnew01"
         },
         "RDSNSGName": {
             "value": "rds"
@@ -45,7 +45,7 @@
             "value": "RDP Session"
         },
         "vmPrivateIP1": {
-            "value": "10.0.0.6"
+            "value": "10.0.0.30"
         },
         "workspaceId": {
             "value": "a91fcc73-06dd-4c8c-af8a-fcf8399ed9ef"
