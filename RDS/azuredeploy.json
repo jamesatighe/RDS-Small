@@ -35,7 +35,7 @@
         "description": "Domain Controller for RDS Configuration task."
       }
     },
-    "dnsServer": {
+    "dnsServers": {
       "type": "array",
       "metadata": {
         "description": "DNS Server list JSON Array."
@@ -258,7 +258,7 @@
           }
         ],
         "dnsSettings": {
-          "dnsServers": "[parameters('dnsServer')]"
+          "dnsServers": "[parameters('dnsServers')]"
         },
         "networkSecurityGroup": {
           "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('RDSNSGName'))]"

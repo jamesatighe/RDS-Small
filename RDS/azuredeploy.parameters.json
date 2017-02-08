@@ -17,11 +17,11 @@
         "domainController": {
             "value": "testdc01"
         },
-        "dnsServer": {
-            "value": [
-                "10.0.0.50"
-            ]
-        },
+      "dnsServers": {
+        "value": [
+          "10.0.0.50"
+        ]
+      },
         "existingVirtualNetworkName": {
             "value": "RDSVNet"
         },
