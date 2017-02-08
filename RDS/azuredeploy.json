@@ -68,13 +68,13 @@
     },
     "DSCLocationRDS": {
       "type": "string",
-      "defaultValue": "https://tighedeployment1.blob.core.windows.net/dsc1/dscExtRDSSmall.zip",
+      "defaultValue": "https://cobwebdsc.blob.core.windows.net/dsc/RDS/dscExtRDSSmall.zip",
       "metadata": {
         "description": "Auto-generated container in staging storage account to receive post-build staging folder upload"
       }
     },
     "DSCConfigLocationRDS": {
-      "defaultValue": "https://tighedeployment1.blob.core.windows.net/dsc1/dscextRDS.psd1",
+      "defaultValue": "https://cobwebdsc.blob.core.windows.net/dscconfig/RDS/dscextRDS.psd1",
       "metadata": {
         "description": "Auto-generated container in staging storage account to receive post-build staging folder upload"
       },

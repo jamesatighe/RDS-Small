@@ -9,18 +9,17 @@
             "value": "sysadmin"
         },
         "domainAdminUserName": {
-            "value": "tighedc\\sysadmin"
+            "value": "testdc\\sysadmin"
         },
         "domainName": {
-            "value": "tighedc.local"
+            "value": "testdc.local"
         },
         "domainController": {
-            "value": "tighedc1"
+            "value": "testdc01"
         },
         "dnsServer": {
             "value": [
-                "10.0.0.4",
-                "10.0.0.5"
+                "10.0.0.50"
             ]
         },
         "existingVirtualNetworkName": {
@@ -36,7 +35,7 @@
             "value": "Standard_A4_V2"
         },
         "VM1Name": {
-            "value": "rdsnew01"
+            "value": "rds01"
         },
         "RDSNSGName": {
             "value": "rds"
@@ -45,7 +44,7 @@
             "value": "RDP Session"
         },
         "vmPrivateIP1": {
-            "value": "10.0.0.30"
+            "value": "10.0.0.51"
         },
         "workspaceId": {
             "value": "a91fcc73-06dd-4c8c-af8a-fcf8399ed9ef"
